@@ -1,0 +1,191 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f3f8ff;
+  background: #071321;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(51 102 153 / 32%), transparent 48rem),
+    linear-gradient(160deg, #0b1c2f 0%, #091523 54%, #101a2b 100%);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(1px 1px at 15% 23%, rgb(255 255 255 / 54%) 50%, transparent 100%),
+    radial-gradient(1px 1px at 75% 38%, rgb(255 255 255 / 48%) 50%, transparent 100%),
+    radial-gradient(1px 1px at 42% 76%, rgb(255 255 255 / 36%) 50%, transparent 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.card {
+  width: min(100%, 620px);
+  padding: clamp(32px, 7vw, 64px);
+  border: 1px solid rgb(213 232 255 / 15%);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgb(20 39 61 / 88%), rgb(12 27 44 / 88%));
+  box-shadow: 0 32px 100px rgb(0 0 0 / 28%), inset 0 1px rgb(255 255 255 / 7%);
+  text-align: center;
+  backdrop-filter: blur(16px);
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: #a9c7e8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.description {
+  max-width: 410px;
+  margin: 22px auto 30px;
+  color: #c1d0e0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.hint {
+  margin: 20px 0 0;
+  color: #8fa7bf;
+  font-size: 0.85rem;
+}
+
+
+.playground {
+  margin-top: 22px;
+  text-align: left;
+}
+
+.playground summary {
+  cursor: pointer;
+  color: #a9c7e8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.playground summary:focus-visible {
+  outline: 3px solid #82caff;
+  outline-offset: 3px;
+}
+
+.playground-hint {
+  margin: 14px 0 10px;
+  color: #8fa7bf;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.playground-hint code {
+  color: #c1d0e0;
+}
+
+.pg-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgb(220 238 255 / 18%);
+  border-radius: 12px;
+  background: rgb(4 12 22 / 60%);
+  color: #dceeff;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.pg-textarea:focus-visible {
+  outline: 3px solid #82caff;
+  outline-offset: 2px;
+}
+
+.pg-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.pg-button {
+  min-height: 38px;
+  padding: 0 18px;
+  border: 1px solid rgb(220 238 255 / 30%);
+  border-radius: 999px;
+  background: #dceeff;
+  color: #10243a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.pg-button:hover {
+  background: #fff;
+}
+
+.pg-fps-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8fa7bf;
+  font-size: 0.82rem;
+  cursor: pointer;
+  accent-color: #82caff;
+}
+
+.pg-error {
+  margin: 10px 0 0;
+  color: #ff9d9d;
+  font-size: 0.8rem;
+}
+
+.fps-overlay {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgb(4 12 22 / 70%);
+  color: #82caff;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.75rem;
+  pointer-events: none;
+}

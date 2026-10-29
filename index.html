@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071321">
+    <meta name="description" content="A lightweight, dependency-free falling snow effect for your website.">
+    <title>Winterfall — Falling Snow Effect</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-labelledby="title">
+        <p class="eyebrow">A little winter magic</p>
+        <h1 id="title">Winterfall</h1>
+        <p class="description">
+          Add a soft snowfall to any website. Lightweight, customizable, and ready to make the season feel special.
+        </p>
+
+        <p class="hint">
+          No dependencies. Drag the floating <span aria-hidden="true">&#10052;</span> button anywhere on
+          screen and open it to shape the snow &mdash; presets, intensity, wind, and snowdrifts.
+        </p>
+
+        <details class="playground">
+          <summary>Playground</summary>
+          <p class="playground-hint">
+            Edit any options as JSON and apply them live through
+            <code>snowfall.update()</code>.
+          </p>
+          <textarea id="pg-options" class="pg-textarea" spellcheck="false" rows="7">{
+  "preset": "christmas",
+  "burst": true,
+  "catchRadius": 50
+}</textarea>
+          <div class="pg-actions">
+            <button id="pg-apply" class="pg-button" type="button">Apply</button>
+            <label class="pg-fps-toggle">
+              <input id="pg-fps" type="checkbox">
+              Show FPS
+            </label>
+          </div>
+          <p id="pg-error" class="pg-error" role="alert" hidden></p>
+        </details>
+      </section>
+    </main>
+
+    <div id="fps-overlay" class="fps-overlay" hidden></div>
+
+    <script src="snowfall.js"></script>
+    <script>
+      const snowfall = Winterfall.create({ preset: "christmas", controls: true, rememberChoice: true });
+
+      const pgTextarea = document.querySelector("#pg-options");
+      const pgApply = document.querySelector("#pg-apply");
+      const pgError = document.querySelector("#pg-error");
+      const pgFps = document.querySelector("#pg-fps");
+      const fpsOverlay = document.querySelector("#fps-overlay");
+
+      pgApply.addEventListener("click", function () {
+        let options;
+        try {
+          options = JSON.parse(pgTextarea.value);
+        } catch (error) {
+          pgError.textContent = "Invalid JSON: " + error.message;
+          pgError.hidden = false;
+          return;
+        }
+        try {
+          snowfall.update(options);
+          pgError.hidden = true;
+        } catch (error) {
+          pgError.textContent = error.message;
+          pgError.hidden = false;
+        }
+      });
+
+      // Simple FPS meter: average of the last 30 animation frames.
+      let fpsFrames = 0;
+      let fpsLastTime = 0;
+      let fpsValue = 0;
+      function fpsLoop(now) {
+        if (fpsLastTime) {
+          fpsFrames += 1;
+          fpsValue += (1000 / (now - fpsLastTime) - fpsValue) * 0.1;
+          if (fpsFrames >= 15) {
+            fpsOverlay.textContent = Math.round(fpsValue) + " FPS";
+            fpsFrames = 0;
+          }
+        }
+        fpsLastTime = now;
+        if (!fpsOverlay.hidden) requestAnimationFrame(fpsLoop);
+      }
+      pgFps.addEventListener("change", function () {
+        fpsOverlay.hidden = !pgFps.checked;
+        if (pgFps.checked) {
+          fpsLastTime = 0;
+          requestAnimationFrame(fpsLoop);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -23,7 +23,7 @@ A lightweight, dependency-free falling snow effect you can add to any website. I
 
 ## Demo
 
-Open `[index.html](https://baguviix.github.io/Winter-Fall/)` in a browser. A floating ❄ button appears in the corner — drag it anywhere, click it to open the control panel, and try the presets, sliders, and snowdrifts. The **Playground** section under the card applies any options as JSON live, and can show an FPS counter.
+Open `baguviix.github.io/Winter-Fall/` in a browser. A floating ❄ button appears in the corner — drag it anywhere, click it to open the control panel, and try the presets, sliders, and snowdrifts. The **Playground** section under the card applies any options as JSON live, and can show an FPS counter.
 
 ## Quick start (no code)
 
